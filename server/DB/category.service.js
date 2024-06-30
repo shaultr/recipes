@@ -5,8 +5,8 @@ import { checkFields } from './function/function';
 
 export const createCategorysService = async (category) => {
 
-  checkFields(category, ["title", "colorLabel", "image"]);
-  category.image = await saveImgToCloud(category.image);
+  // checkFields(category, ["title", "colorLabel", "image"]);
+  // category.image = await saveImgToCloud(category.image);
   createCategory(category)
 };
 export const readCategoryByIdService = (id) => readCategoryById(id);
