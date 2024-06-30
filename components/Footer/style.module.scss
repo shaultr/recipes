@@ -1,0 +1,15 @@
+.container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: fixed;
+    height: 50px; 
+    width: 100vw;
+    background-color: black;
+    color: #ffff;
+    bottom: 0; 
+}
+
+.edit{
+    font-size: 30px;
+}

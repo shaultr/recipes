@@ -1,0 +1,23 @@
+.label {
+  position: relative; 
+  display: inline-block;
+  padding: 20px 40px;
+  
+  svg{
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 4;
+    
+  }
+  span {
+    color: white;
+    position: relative;
+    z-index: 5;
+  
+  }
+  
+}
+

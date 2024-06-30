@@ -1,0 +1,21 @@
+.Container{
+    z-index: 999;
+    position: fixed;
+    background-color: rgba(63, 65, 67, 0.45);
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+}
+
+.popupContent{
+    display: flex;
+    width: 400px;
+    height: 400px;
+    background-color: aliceblue;
+    border-radius: 1%;
+    padding: 20px;
+    
+}

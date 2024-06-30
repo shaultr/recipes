@@ -1,0 +1,18 @@
+.container {
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+
+    h3 {
+        width: 50%;
+
+        font-size: 22px;
+        background-color: #333;
+        color: white;
+        padding: 5px;
+    }
+}
+.time{
+    display: flex;
+}

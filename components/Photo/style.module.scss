@@ -1,0 +1,32 @@
+.container{
+    position: relative;
+    height: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    padding: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    img{
+        object-fit: cover;
+    
+    }
+    .recipeName{
+        position: absolute;
+        color: black;
+        background-color: antiquewhite;
+        z-index: 3;
+        display: block;
+        width: 100%;
+        text-align: center;
+        font-size: 30px;
+    }
+    &:hover{
+        img{
+            scale: 1.2;
+            transition: 0.5s ease-in all;
+            
+        }
+    }
+
+}

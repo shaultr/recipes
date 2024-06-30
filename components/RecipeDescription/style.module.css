@@ -1,0 +1,20 @@
+.container{
+    width: 100%;
+    height: 700px;
+    background-color: rgb(166, 192, 192);
+    display: flex;
+    justify-content: space-between;
+  
+}
+
+.description{
+    font-size: 40px;
+    color: white;
+    padding: 30px;
+
+}
+.image{
+    width: 60%;
+    height: auto;
+object-fit: cover;
+}

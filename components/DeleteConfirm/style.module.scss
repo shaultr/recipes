@@ -1,0 +1,30 @@
+.container{
+
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content: space-around;
+    padding: 15px;
+    
+}
+.h1{
+    padding-left: 20px;
+}
+.buttons{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+.button{
+
+    border-radius: 7px;
+    padding:  20px 30px;
+    color: white;
+}
+.confirmButton{
+    background-color:rgb(57, 189, 57);
+}
+.cancelButton{
+    background-color:rgba(228, 123, 123, 0.948);
+}
