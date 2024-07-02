@@ -13,7 +13,7 @@ export const readCategoryById = (id) =>
 export const createCategory = (data) => {
   console.log(data);
   CategoryModel.create(data)
-  console.log(data,"dddddddd");
+  console.log(data);
 };
 export const updateCategory = (id, data) =>
   CategoryModel.findByIdAndUpdate({ _id: id }, data, { new: true })?.lean();

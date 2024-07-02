@@ -10,7 +10,7 @@ const categorySchema = new mongoose.Schema({
   },
   image: {
     type: imageSchema,
-    // required: true,
+    required: true,
   },
   colorLabel: {
     type: String,
