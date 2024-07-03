@@ -4,7 +4,7 @@ import styles from "./style.module.scss";
 export default function AddCategory() {
     return (
         <div className={styles.container}>
-            <h2>קטגוריה חדשה</h2>
+            <h2>קטגוריה חדשה</h2> 
             <form action={cretaeCategoryAction} >
                 <input type="text" name="title" placeholder="שם הקטגוריה" required />
                 <div class={styles.color}>
