@@ -6,7 +6,7 @@ export const connectToMongo = async () => {
          console.log('already connected');
          return;
       }
-   await connect(process.env.URL_MONGO)
+   await connect(process.env.MONGO_URL)
    console.log('connected to mongo');
 } catch (error) {
    console.log('error connect to mongo',error);

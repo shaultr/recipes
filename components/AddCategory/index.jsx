@@ -9,10 +9,10 @@ export default function AddCategory() {
                 <input type="text" name="title" placeholder="שם הקטגוריה" required />
                 <div class={styles.color}>
                    בחר צבע תוית
-                    <input type="color" name="colorLabel" placeholder="שם הקטגוריה" value={'#2DB4AB'} />
+                    <input type="color" name="colorLabel" placeholder="שם הקטגוריה" />
                 </div>
                 הוסף תמונה
-                <input type="file" name="image" required/>
+                <input type="file" name="image" />
                 <button className={styles.btn} type="submit" >צור קטגוריה</button>
             </form>
         </div>
