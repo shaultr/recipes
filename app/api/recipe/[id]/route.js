@@ -1,50 +1,45 @@
-import { deleteRecipe, readRecipesService } from "@/server/DB/recipe.service";
+import { deleteRecipe, readRecipeByIdService} from "@/server/DB/recipe.service";
 import { connectToMongo } from "@/server/DL/connectToMongo";
 import { NextResponse } from "next/server";
-import cloudinary from 'cloudinary';
 
-// הגדרת Cloudinary
-cloudinary.v2.config({
-  cloud_name: process.env.CLOUD_NAME,
-  api_key: process.env.CLOUD_KEY,
-  api_secret: process.env.CLOUD_SECRET,
-  secure: true // זה יבטיח שכל ה-URLs המוחזרים יהיו HTTPS
-});
 
-// GET פונקציית ה-
-export const GET = async (req) => {
-  try {
-    console.log('Connecting to MongoDB...');
-    await connectToMongo();
-    console.log('Fetching recipes...');
-    const recipes = await readRecipesService();
-    console.log('Recipes fetched:', recipes);
-    return NextResponse.json(recipes);
-  } catch (error) {
-    console.error('Error fetching recipes:', error);
-    return NextResponse.json({ error: 'Failed to fetch recipes' }, { status: 500 });
-  }
-};
+// export const PUT = async (req, { params }) => {
+//    try {
+//       const body = await req.json();
+//       const { id } = params;
+//       const searchParams = Object.fromEntries(req.nextUrl.searchParams)
+//       return NextResponse.json({ body, id, searchParams })
+//    } catch (error) {
+//       console.log(error);
+//    }
+// }
 
-// POST פונקציית ה-
-export const POST = async (req) => {
-  try {
-    const body = await req.json();
-    const imageFile = body.img;
+export const GET = async (req, { params }) => {
+   if(req.method === "GET"){
 
-    if (!imageFile) {
-      return NextResponse.json({ error: 'Missing required parameter - img' }, { status: 400 });
-    }
+      try {
+         await connectToMongo()
+         const { id } = params;
+         const recipes = await readRecipeByIdService( id, true )
+         return NextResponse.json(recipes);
+      } catch (error) {
+         console.log(error);
+      }
+   }
+}
 
-    console.log('Uploading image to Cloudinary...');
-    const result = await cloudinary.v2.uploader.upload(imageFile, {
-      folder: "instructions-images"
-    });
+export const DELETE = async (req, { params }) => {
+   if(req.method === 'DELETE'){
+      const { id } = params;
+      const body = await req.json(); 
+      const { category } = body;
+      try {
+         await deleteRecipe(id, category);
+         return NextResponse.json({ message: 'Recipe deleted successfully' });
+      } catch (error) {
+         console.log(error);
+      }
+   }
+}
 
-    console.log('Image uploaded:', result);
-    return NextResponse.json({ url: result.secure_url });
-  } catch (err) {
-    console.error('Error uploading image:', err);
-    return NextResponse.json({ error: 'Image upload failed', details: err.message }, { status: 500 });
-  }
-};
+
