@@ -1,14 +1,20 @@
-import mongoose,{ connect } from "mongoose";
+import mongoose from 'mongoose';
 
-export const connectToMongo = async () => {
-   try {
-      if (mongoose.connection.readyState === 1) {
-         console.log('already connected');
-         return;
-      }
-   await connect(process.env.MONGO_URL)
-   console.log('connected to mongo');
-} catch (error) {
-   console.log('error connect to mongo',error);
-}
-}
+const uri = process.env.MONGO_URI;
+
+export const connectToDatabase = async () => {
+  if (mongoose.connection.readyState >= 1) {
+    return;
+  }
+
+  return mongoose.connect(uri, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    serverSelectionTimeoutMS: 5000, // 5 שניות
+    socketTimeoutMS: 45000 // 45 שניות
+  }).then(() => {
+    console.log('Connected to MongoDB');
+  }).catch(err => {
+    console.error('Error connecting to MongoDB', err);
+  });
+};
