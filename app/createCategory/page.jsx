@@ -5,7 +5,7 @@ import { Popup } from '@/components/Popup'
 import { useRouter } from 'next/navigation';
 import { connectToMongo } from '@/server/DL/connectToMongo';
 
-export default  function createCategory() {
+export default function createCategory() {
     const router = useRouter()
     const [popup, setPopup] = useState(true);
     // await connectToMongo()
@@ -13,7 +13,6 @@ export default  function createCategory() {
     return (
         <div>
             {
-                
                 popup ?
                     <Popup setPopup={setPopup}>
                         <AddCategory />
