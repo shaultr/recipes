@@ -1,4 +1,4 @@
-import { readCategoryService } from "../category.service";
+import { readCategoryService } from "../service/category.service";
 
 export const getCategoryDetails = async (categoryTitle) => {
     const category = await readCategoryService({ title: categoryTitle });

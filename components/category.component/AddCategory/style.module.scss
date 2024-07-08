@@ -1,0 +1,37 @@
+.container {
+    width: 100%;
+    margin: auto, 0;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    h2{
+        justify-content: center;
+        align-items: center;
+        margin-right: auto;
+        margin-left: auto;
+        padding-bottom: 10px;
+    }
+
+    form {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+
+        input,
+        button
+        {
+            font-size: 22px;
+            width: 100%;
+            height: 40px;
+            padding: 8px;
+        }
+ }
+
+.btn {
+    position: relative;
+    margin-top: 100px;
+    background-color:  rgb(181, 6, 6);
+ color: white;
+}
+}

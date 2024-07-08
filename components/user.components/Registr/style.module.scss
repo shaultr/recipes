@@ -1,0 +1,57 @@
+.container {
+  background-color: antiquewhite;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+}
+
+.imputContainer {
+  background-color: #f7f7f7;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  gap: 6px;
+  border: 1px solid gray;
+  border-radius: 10px;
+
+  .icon {
+    color: gray;
+    display: flex;
+    align-items: center;
+    font-size: 25px;
+  }
+
+  svg {
+    color: #999;
+  }
+
+
+}
+
+.input {
+  outline: none;
+  border: none;
+  background-color: inherit;
+  width: 100%;
+  font-size: 16px;
+
+  &::placeholder {
+    color: #999;
+    font-size: 14px;
+  }
+
+}
+
+.btn {
+  padding: 10px;
+  background-color: rgb(75, 235, 197);
+  border: 1px solid gray;
+  border-radius: 10px;
+}
+.error{
+  color: red;
+  width: 100%;
+  text-align: center;
+  font-size: 15px;
+}

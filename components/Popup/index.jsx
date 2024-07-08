@@ -1,3 +1,4 @@
+"use client"
 import Styles from './style.module.scss'
 
 export const Popup = ({setPopup , children}) => {

@@ -1,13 +1,13 @@
 import mongoose from "mongoose";
 import Category from './category.model'
 import { imageSchema } from "./imageSchema";
- 
+
 
 
 const recipeSchema = new mongoose.Schema({
-  image:{
-    type:imageSchema,
-    required:true
+  image: {
+    type: imageSchema,
+    required: true
   },
   title: {
     type: String,
@@ -37,13 +37,28 @@ const recipeSchema = new mongoose.Schema({
   servings: {
     type: Number,
   },
-  category:
-  [{
+  createDate: {
+    type: Date,
+    default: Date.now,
+  },editor:{
     type: mongoose.Schema.Types.ObjectId,
-    ref:'Category',
-    required: true,
-  },]
-
+    ref: 'User',
+  },
+  category:
+    [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Category',
+      required: true,
+    },],
+    likes: {
+      type: [String],
+      default: []
+    }, 
+    views: {
+      type: [String],
+      default: [], 
+    }
+  
 });
 
 export const RecipeModel =

@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from 'next/navigation';
-import AddCategory from '../AddCategory';
+import AddCategory from '../category.component/AddCategory';
 import { Popup } from '../Popup';
 import styles from './style.module.scss'
 import { useEffect, useState } from 'react';

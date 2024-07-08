@@ -1,4 +1,4 @@
-.Container{
+.Container {
     z-index: 999;
     position: fixed;
     background-color: rgba(63, 65, 67, 0.45);
@@ -8,14 +8,15 @@
     justify-content: center;
     align-items: center;
     top: 0;
+    left: 0;
 }
 
-.popupContent{
+.popupContent {
     display: flex;
     width: 400px;
-    height: 400px;
+    height: 500px;
     background-color: aliceblue;
     border-radius: 1%;
     padding: 20px;
-    
+
 }

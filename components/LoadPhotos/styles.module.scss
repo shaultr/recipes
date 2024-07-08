@@ -5,9 +5,8 @@
    @extend .photos;
   }
   .photoLoad{
-   background: linear-gradient(to right ,rgb(184, 179, 179),grey,rgb(184, 179, 179));
+   background: linear-gradient(to right ,rgb(184, 179, 179),rgb(228, 225, 225),rgb(184, 179, 179));
    height: 250px;
-   width: 470px;
    border-radius: 10px;
    animation:load 3s infinite linear ;
   }

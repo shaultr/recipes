@@ -6,14 +6,14 @@ cloudinary.config({
   api_secret: process.env.CLOUD_SECRET,
 });
 
-const saveImgToCloud = async (img) => {
+const saveImgToCloud = async (img, folder) => {
   try {
     if (!img) {
       console.error("No image provided");
       return null;
     }
 
-    const fileType = img.type.split('/')[0];
+    const fileType = img?.type?.split('/')[0];
     if (fileType !== 'image') {
       console.error("File is not an image");
       return null;
@@ -23,7 +23,7 @@ const saveImgToCloud = async (img) => {
     const buffer = new Uint8Array(arrayBuffer);
 
     const image = await new Promise((resolve, reject) => {
-      cloudinary.uploader.upload_stream({ folder: "recipeImage" }, (err, uploadRes) => {
+      cloudinary.uploader.upload_stream({ folder: folder }, (err, uploadRes) => {
         if (err) {
           return reject(err);
         }
@@ -38,12 +38,14 @@ const saveImgToCloud = async (img) => {
       console.error("Error uploading to Cloudinary:", err);
       return null;
     });
-    console.log(image)
     return image;
   } catch (error) {
     console.error("Error processing the image:", error);
     return null;
   }
 };
+const deleteImageFromCloud =async (imageId)=>{
+ await cloudinary.uploader.destroy(imageId)
+}
 
-export { saveImgToCloud };
+export { saveImgToCloud, deleteImageFromCloud };

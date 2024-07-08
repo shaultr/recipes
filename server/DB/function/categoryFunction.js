@@ -1,4 +1,4 @@
-import { readCategoryService, updateCategoryService } from "../category.service";
+import { readCategoryService, updateCategoryService } from "../service/category.service";
 
 export const getCategoryId = async (filter) =>
   (await readCategoryService(filter))._id.toString();

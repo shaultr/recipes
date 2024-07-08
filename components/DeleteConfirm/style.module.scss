@@ -1,30 +1,42 @@
-.container{
+.container {
 
     display: flex;
     flex-direction: column;
-    align-items:center;
+    align-items: center;
     justify-content: space-around;
     padding: 15px;
-    
+    width: 100%;
+    text-align: center;
+
 }
-.h1{
+
+.h1 {
     padding-left: 20px;
 }
-.buttons{
+
+.buttons {
     width: 100%;
     display: flex;
     justify-content: space-between;
     padding: 20px;
 }
-.button{
+
+.button {
 
     border-radius: 7px;
-    padding:  20px 30px;
+    padding: 20px 30px;
     color: white;
 }
-.confirmButton{
-    background-color:rgb(57, 189, 57);
+
+.click {
+    pointer-events: none;
+    opacity: 0.5;
 }
-.cancelButton{
-    background-color:rgba(228, 123, 123, 0.948);
+
+.confirmButton {
+    background-color: rgb(57, 189, 57);
+}
+
+.cancelButton {
+    background-color: rgba(228, 123, 123, 0.948);
 }

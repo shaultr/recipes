@@ -1,45 +1,58 @@
-import React, { useContext } from 'react'
-import styles from './style.module.scss'
-import { useRouter } from "next/navigation"
-
+import React, { useState } from "react";
+import styles from "./style.module.scss";
+import { useRouter } from "next/navigation";
+import SuccessMessage from "../SuccessMessage";
+import Spinner from "../Spinner";
 
 export const DeleteConfirm = ({ type, setPopup, _id, category, title }) => {
-  const router = useRouter()
+  const [isClick, setIsClick] = useState(false)
+
+  const router = useRouter();
 
   const handleDelete = async () => {
+    setIsClick(true)
 
-    try {
-      if (type === 'recipe') {
-        const response = await fetch(`/api/recipe/${_id}`, {
-          method: 'DELETE',
-          cache: 'no-store',
-          body: JSON.stringify({ category }),
-        });
-        if (response.ok) {
-          router.push(`/category/${title}`, undefined, { shallow: false })
-          setPopup(undefined)
+    const options = { method: "DELETE", cache: "no-store" };
 
-        }
-      }
-      else if (type === 'category') {
-        console.log(type, _id);
-        setPopup(undefined)
+    if (category) options.body = JSON.stringify({ category });
 
-      }
+    const response = await fetch(`/api/${type}/${_id}`, options);
+    const data = await response?.json();
 
-    } catch (error) {
-      console.error('Fetch error:', error);
+    if (data.message) {
+      router.push(`/${category ? `category/${title}` : ''}`, undefined, { shallow: false });
+      setPopup(<SuccessMessage message={`${data.message}`} />);
+      setTimeout(() => {
+        setPopup(undefined);
+      }, 2000);
+    }
+    else {
+      setPopup(`${data.error}`);
+
     }
   };
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.h1}>אתה בטוח רוצה <br /> למחוק את המתכון הזה?</h1>
+      <h1 className={styles.h1}>
+        אתה בטוח<br /> שברצונך למחוק ?
+      </h1>
       <div className={styles.buttons}>
-        <button className={`${styles.button} ${styles.confirmButton}`} onClick={handleDelete}>אישור</button>
-        <button className={`${styles.button} ${styles.cancelButton}`} onClick={() => setPopup(undefined)}>ביטול</button>
-      </div>
+        <button
 
+          className={`${styles.button} ${styles.confirmButton} ${isClick ? styles.click : ''}`}
+          onClick={handleDelete}
+        >
+          אישור
+        </button>
+        <button
+          className={`${styles.button} ${styles.cancelButton}`}
+          onClick={() => setPopup(undefined)}
+        >
+          ביטול
+        </button>
+      </div>
+      {isClick && <Spinner />}
     </div>
-  )
-}
+  );
+};

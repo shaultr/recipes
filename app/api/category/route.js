@@ -1,4 +1,4 @@
-import { readCategorysService } from "@/server/DB/category.service";
+import { readCategorysService } from "@/server/DB/service/category.service";
 import { connectToMongo } from "@/server/DL/connectToMongo";
 import { NextResponse } from "next/server";
 

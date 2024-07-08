@@ -2,9 +2,9 @@ import { SearchBar } from "@/components/SearchBar";
 import styles from "./style.module.scss";
 import Photo from "@/components/Photo";
 import { connectToMongo } from "@/server/DL/connectToMongo";
-import { readCategorysService } from "@/server/DB/category.service";
+import { readCategorysService } from "@/server/DB/service/category.service";
 import Navlink from "@/components/NavLink";
-import DeleteCategory from "@/components/DeleteCategory";
+import DeleteCategory from "@/components/category.component/DeleteCategory";
 
 export default async function Home() {
   await connectToMongo();

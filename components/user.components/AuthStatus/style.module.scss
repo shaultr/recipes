@@ -1,0 +1,19 @@
+@import '../../../app/vars.scss';
+.login{
+    @extend .flex-center;
+    cursor: pointer;
+    gap: 5px;
+    color: #ffff;
+    font-size: 20px;
+    
+    .userAvatar{
+      @extend .flex-center;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background-color: #c8bfbf;
+      color: #180f05;
+      
+    }
+  }
+  

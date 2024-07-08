@@ -1,26 +1,15 @@
-import { deleteRecipe, readRecipeByIdService} from "@/server/DB/recipe.service";
+import { isAdmin } from "@/server/DB/function/userAuth";
+import { deleteRecipe, readRecipeByIdService } from "@/server/DB/service/recipe.service";
 import { connectToMongo } from "@/server/DL/connectToMongo";
 import { NextResponse } from "next/server";
 
 
-// export const PUT = async (req, { params }) => {
-//    try {
-//       const body = await req.json();
-//       const { id } = params;
-//       const searchParams = Object.fromEntries(req.nextUrl.searchParams)
-//       return NextResponse.json({ body, id, searchParams })
-//    } catch (error) {
-//       console.log(error);
-//    }
-// }
-
 export const GET = async (req, { params }) => {
-   if(req.method === "GET"){
-
+   if (req.method === "GET") {
       try {
          await connectToMongo()
          const { id } = params;
-         const recipes = await readRecipeByIdService( id, true )
+         const recipes = await readRecipeByIdService(id, true)
          return NextResponse.json(recipes);
       } catch (error) {
          console.log(error);
@@ -29,15 +18,19 @@ export const GET = async (req, { params }) => {
 }
 
 export const DELETE = async (req, { params }) => {
-   if(req.method === 'DELETE'){
-      const { id } = params;
-      const body = await req.json(); 
-      const { category } = body;
+   if (req.method === 'DELETE') {
       try {
+         if (!isAdmin()) throw new Error({ message: "only admin can delete this recipe" })
+         const { id } = params;
+         const body = await req.json();
+         const { category } = body;
+         console.log(body)
          await deleteRecipe(id, category);
          return NextResponse.json({ message: 'Recipe deleted successfully' });
       } catch (error) {
-         console.log(error);
+         console.log(error?.message);
+
+
       }
    }
 }
