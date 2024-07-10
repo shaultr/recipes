@@ -23,7 +23,7 @@ const userSchema = new mongoose.Schema({
     permission: {
         type: String,
         enum: ["admin", "editor", "user"],
-        default: "admin",
+        default: "user",
     },
     createDate: {
         type: Date,
