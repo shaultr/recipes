@@ -10,7 +10,7 @@ export const DELETE = async (req, { params }) => {
        try {
          if(!isAdmin()) throw new Error("רק מנהל יכול למחוק קטגוריה")
           await deleteRecipeByIdService(id);
-          return NextResponse.json({ message: 'המתכון נמחק בהצלחה' });
+          return NextResponse.json({ message: 'נמחק בהצלחה' });
        } catch (error) {
           console.log(error?.message);
           return NextResponse.json({ error: error?.message });
