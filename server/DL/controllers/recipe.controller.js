@@ -1,8 +1,18 @@
 import { RecipeModel } from "../models/recipe.model"
 
-export const readRecipes = () => RecipeModel.find().lean()
-export const readRecipeById = async (id, populate = false, lean = true) => {
-   const recipe = populate ? RecipeModel.findById(id).populate('category') : RecipeModel.findById(id);
+export const readRecipes = (filter = {}, populate = false, lean = true) => {
+   let query = RecipeModel.find(filter);
+   if (populate) {
+     query = query.populate('category');
+   }
+   if (lean) {
+     query = query.lean();
+   }
+   return query;
+ };
+ 
+export const readRecipeById = async (filter = {}, populate = false, lean = true) => {
+   const recipe = populate ? RecipeModel.findById(filter).populate('category') : RecipeModel.findById(id);
    if(lean) recipe.lean();
    return recipe;
 }
