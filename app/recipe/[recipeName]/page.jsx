@@ -3,7 +3,7 @@ import Instructions from "@/components/recipe.component/Instructions";
 import { readRecipeByIdService, readRecipesService } from "@/server/DB/service/recipe.service";
 import { connectToMongo } from "@/server/DL/connectToMongo";
 import { Footer } from "@/components/Footer";
-import styles from './style.module.scss'
+import styles from './style.module.scss';
 import { isEditor } from "@/server/DB/function/userAuth";
 
 export const generateStaticParams = async () => {
@@ -16,6 +16,10 @@ export default async function Recipe({ params: { recipeName } }) {
   await connectToMongo();
   const recipe = await readRecipeByIdService(decodeURI(recipeName), true);
 
+  if (!recipe) {
+    return <h1>מתכון לא קיים 😥</h1>;
+  }
+
   const {
     title = '',
     description = '',
@@ -26,19 +30,29 @@ export default async function Recipe({ params: { recipeName } }) {
     servings = '',
     typeFood = '',
     instructions = '',
-    category = '',
-  } = recipe || {};
+    category = []
+  } = recipe;
+
   const imageUrl = image?.image_url ? image.image_url : image;
 
+  const firstCategory = Array.isArray(category)
+    ? category[0]
+    : typeof category === 'string'
+    ? category
+    : null;
 
-  return (<>
-    {recipe ? <div className={styles.recipeBody} >
+  const categoryId = firstCategory?._id || firstCategory || '';
+  const categoryTitle = firstCategory?.title || firstCategory || '';
+
+  return (
+    <div className={styles.recipeBody}>
       <RecipeDescription
         recipeName={title}
         description={description}
         image={imageUrl}
-        category={category[0]}
+        category={categoryTitle}
       />
+
       <Instructions
         ingredients={ingredients}
         preparationTime={preparationTime}
@@ -47,11 +61,14 @@ export default async function Recipe({ params: { recipeName } }) {
         typeFood={typeFood}
         instructions={instructions}
       />
-      {isEditor() && <Footer recipeName={recipeName} category={category[0]._id} title={category[0].title} />}
 
-    </div >
-      : <h1 >  מתכון לא קיים 😥</h1>
-    }
-  </>
+      {isEditor() && firstCategory && (
+        <Footer
+          recipeName={recipeName}
+          category={categoryId}
+          title={categoryTitle}
+        />
+      )}
+    </div>
   );
 }
